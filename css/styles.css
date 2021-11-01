@@ -250,10 +250,12 @@ img {
 .backdrop {
   position: fixed;
   z-index: 3;
-    top: 0;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+
+  transition: opacity 300ms linear, visibility 300ms linear;
 
   margin-right: auto;
   margin-left: auto;
@@ -262,15 +264,22 @@ img {
 }
 
 .backdrop.is-hidden {
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: rotate(-180deg);
+  transition: transform 300ms linear;
 }
 
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(0deg);
+  transition: transform 300ms linear;
 
   min-width: 528px;
   min-height: 581px;
@@ -284,6 +293,7 @@ img {
   position: absolute;
   top: 8px;
   right: 8px;
+
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -297,7 +307,7 @@ img {
   width: 11px;
   height: 11px;
   fill: currentColor;
-  }
+}
 
 .hero-button:hover,
 .hero-button:focus {
